@@ -29,16 +29,6 @@ module.exports = (sequelize, DataTypes) => {
         password_hash: {
             type: DataTypes.STRING(255),
             allowNull: false,
-            validate: {
-                notEmpty: true,
-                len: [6, 255]
-            }
-        },
-
-        created_at: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW
         },
 
         points: {

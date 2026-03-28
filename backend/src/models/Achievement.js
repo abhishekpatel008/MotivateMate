@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.TEXT,
             allowNull: true
         },
-        criteria: {
+        criteria_type: {
             type: DataTypes.ENUM('tasks_completed', 'points_earned', 'streak_days', 'pet_level', 'custom'),
             allowNull: false
         },
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {
         tableName: 'achievements',
-        timestamps: true,
+        timestamps: false,
         underscored: true
     });
 

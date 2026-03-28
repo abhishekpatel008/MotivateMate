@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {
         tableName: 'user_achievements',
-        timestamps: true,
+        timestamps: false,
         underscored: true,
         indexes: [
             { unique: true, fields: ['user_id', 'achievement_id'] }

@@ -31,11 +31,11 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: 'cat'
         },
 
-        created_at: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW
-        },
+        // created_at: {
+        //     type: DataTypes.DATE,
+        //     allowNull: false,
+        //     defaultValue: DataTypes.NOW
+        // },
 
         level: {
             type: DataTypes.INTEGER,

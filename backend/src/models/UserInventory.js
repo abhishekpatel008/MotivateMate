@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        shop_item_id: {
+        item_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
@@ -27,13 +27,13 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: DataTypes.NOW
         }
     }, {
-        tableName: 'user_inventories',
-        timestamps: true,
+        tableName: 'user_inventory',
+        timestamps: false,
         underscored: true,
         indexes: [
-            { unique: true, fields: ['user_id', 'shop_item_id'] }
+            { unique: true, fields: ['user_id', 'item_id'] }
         ]
     });
 
     return UserInventory;
-};
+}

@@ -16,6 +16,8 @@ module.exports = (sequelize, DataTypes) => {
         },
         item_type: {
             type: DataTypes.ENUM('food', 'toy', 'accessory', 'other'),
+            allowNull: false,
+            defaultValue: 'other'
 
         },
         effect_type: {
@@ -49,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
 
         {
             tableName: 'shop_items',
-            timestamps: true,
+            timestamps: false,
             underscored: true
         });
 
