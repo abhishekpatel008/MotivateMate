@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { Link }     from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../services/api';
 
-function Login() {
+function Login({ setUser }) {
     const [identifier, setIdentifier] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,7 +21,8 @@ function Login() {
             localStorage.setItem('token', data.token);
             localStorage.setItem('storedUser', JSON.stringify(data.user));
 
-            window.location.href = '/dashboard';
+            if (setUser) setUser(data.user);
+            navigate('/dashboard', { replace: true });
 
         } catch (err) {
             console.error('Login error:', err);

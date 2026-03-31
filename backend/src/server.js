@@ -6,7 +6,7 @@ const { testConnection } = require('./config/database');
 const authRoutes = require('./routes/auth');
 const taskRoutes = require('./routes/tasks');
 const petRoutes = require('./routes/pet');
-const shopRoutes = require('./routes/shop'); // Add this
+const shopRoutes = require('./routes/shop');
 
 const app = express();
 const PORT = process.env.PORT || 5000;

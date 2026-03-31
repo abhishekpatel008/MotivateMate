@@ -35,7 +35,7 @@ const ShopModal = ({ isOpen, onClose, userPoints, onPurchaseSuccess }) => {
             <div className="bg-white rounded-lg p-6 w-[500px] max-h-[80vh] overflow-y-auto">
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="text-2xl font-bold text-purple-600">Pet Shop 🛒</h2>
-                    <button onClick={onClose} className="text-gray-500">✕</button>
+                    <button onClick={onClose} className="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-sm hover:bg-purple-700 hover:shadow-md transition"> Close ✕ </button>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                     {loading ? (

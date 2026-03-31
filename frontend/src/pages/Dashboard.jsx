@@ -16,8 +16,10 @@ import CalendarView from '../components/CalendarView';
 import AddTaskModal from '../components/AddTaskModal';
 import ShopModal from '../components/ShopModal';
 import AchievementsModal from '../components/AchievementsModal';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard({ user, setUser }) {
+    const navigate = useNavigate();
     const [pet, setPet] = useState(null);
     const [tasks, setTasks] = useState([]);
     const [inventory, setInventory] = useState([]);
@@ -61,18 +63,19 @@ function Dashboard({ user, setUser }) {
 
     useEffect(() => {
         loadDashboard();
-    }, [loadDashboard]);
+    }, []);
+
 
     const handleCreateTask = async (e) => {
         e.preventDefault();
         if (!newTask.title.trim()) return;
-        
+
         // If date is selected from calendar, auto-fill due_date
         const taskData = {
             ...newTask,
             due_date: newTask.due_date || (selectedDate ? selectedDate.toISOString().split('T')[0] : '')
         };
-        
+
         try {
             await createTask(taskData);
             setNewTask({ title: '', description: '', priority: 'medium', difficulty: 'medium', due_date: '' });
@@ -114,7 +117,7 @@ function Dashboard({ user, setUser }) {
 
     const handleLogout = () => {
         localStorage.clear();
-        window.location.href = '/login';
+        navigate ('/login', { replace: true });
     };
 
     if (loading) {
@@ -123,12 +126,12 @@ function Dashboard({ user, setUser }) {
 
     return (
         <div className="min-h-screen bg-gray-100">
-           <Header
-    user={user}
-    onShopClick={() => setIsShopOpen(true)}
-    onAchievementsClick={() => setIsAchievementsOpen(true)}
-    onLogout={handleLogout}
-/>
+            <Header
+                user={user}
+                onShopClick={() => setIsShopOpen(true)}
+                onAchievementsClick={() => setIsAchievementsOpen(true)}
+                onLogout={handleLogout}
+            />
 
             <main className="container mx-auto p-6">
                 {/* Two column layout */}
@@ -180,10 +183,9 @@ function Dashboard({ user, setUser }) {
             />
 
             <AchievementsModal
-    isOpen={isAchievementsOpen}
-    onClose={() => setIsAchievementsOpen(false)}
-    userId={user?.id}
-/>
+                isOpen={isAchievementsOpen}
+                onClose={() => setIsAchievementsOpen(false)}
+            />
 
         </div>
     );

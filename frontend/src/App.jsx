@@ -16,12 +16,12 @@ function App() {
    return (
     <Routes>
       <Route path="/login" element={<Login setUser={setUser} />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/register" element={<Register setUser={setUser} />} />
       <Route 
         path="/dashboard" 
         element={isAuthenticated ? <Dashboard user={user} setUser={setUser} /> : <Navigate to="/login" />} 
       />
-      <Route path="/" element={<Navigate to="/login" />} />
+      <Route path="*" element={<Navigate to="/login" />} />
     </Routes>
   );
 }

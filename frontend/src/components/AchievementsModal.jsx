@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getAchievementProgress } from '../services/api';
 
-const AchievementsModal = ({ isOpen, onClose, userId }) => {
+const AchievementsModal = ({ isOpen, onClose }) => {
     const [achievements, setAchievements] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -45,7 +45,7 @@ const AchievementsModal = ({ isOpen, onClose, userId }) => {
             <div className="bg-white rounded-xl p-6 w-[600px] max-h-[80vh] overflow-y-auto">
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="text-2xl font-bold text-purple-600">🏆 Achievements</h2>
-                    <button onClick={onClose} className="text-gray-500 hover:text-gray-700">✕</button>
+                    <button onClick={onClose} className="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-sm hover:bg-purple-700 hover:shadow-md transition"> Close ✕ </button>
                 </div>
 
                 {loading ? (

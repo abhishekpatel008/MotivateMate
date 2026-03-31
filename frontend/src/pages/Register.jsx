@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { register } from '../services/api';
 
-function Register() {
+function Register({setUser} ) {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -28,7 +28,10 @@ function Register() {
             const data = await register({ username, email, password });
             localStorage.setItem('token', data.token);
             localStorage.setItem('storedUser', JSON.stringify(data.user));
-            navigate('/dashboard');
+
+            if (setUser) setUser(data.user);
+            
+            navigate('/dashboard', { replace: true });
         } catch (error) {
             setError(error.message);
         } finally {
