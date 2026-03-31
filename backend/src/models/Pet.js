@@ -26,17 +26,11 @@ module.exports = (sequelize, DataTypes) => {
 
 
         type: {
-            type: DataTypes.ENUM('dog', 'cat', 'other'),
+            type: DataTypes.ENUM('dog', 'cat', 'owl'),
             allowNull: false,
             defaultValue: 'cat'
         },
-
-        // created_at: {
-        //     type: DataTypes.DATE,
-        //     allowNull: false,
-        //     defaultValue: DataTypes.NOW
-        // },
-
+        
         level: {
             type: DataTypes.INTEGER,
             defaultValue: 1,

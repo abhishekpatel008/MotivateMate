@@ -16,8 +16,9 @@ Pet.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 User.hasMany(Task, { foreignKey: 'user_id', as: 'tasks', onDelete: 'CASCADE' });
 Task.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
 
+// CRITICAL: Association for Inventory effects
 ShopItem.hasMany(UserInventory, { foreignKey: 'item_id', as: 'inventory', onDelete: 'CASCADE' });
-UserInventory.belongsTo(ShopItem, { foreignKey: 'item_id', as: 'item' });
+UserInventory.belongsTo(ShopItem, { foreignKey: 'item_id', as: 'ShopItem' }); // Ensure alias matches controller
 UserInventory.belongsTo(User, { foreignKey: 'user_id', as: 'user', onDelete: 'CASCADE' });
 User.hasMany(UserInventory, { foreignKey: 'user_id', as: 'inventory', onDelete: 'CASCADE' });
 

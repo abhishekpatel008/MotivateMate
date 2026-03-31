@@ -1,0 +1,94 @@
+@startuml Database ER Diagram
+
+entity "users" {
+  * id : integer
+  * name : varchar(50)
+  * email : varchar(100)
+  * password_hash: varchar(255)
+  * points : integer
+  * level : integer
+  * created_at : timestamp
+  * updated_at : timestamp
+}
+
+entity "pets"{
+    * id : integer
+    * user_id : integer
+    * name : varchar(50)
+    * type : varchar(50)
+    * level : integer
+    * experience : integer
+    * hunger : integer
+    * happiness : integer
+    * energy : integer
+    * last_interaction : timestamp
+    * created_at : timestamp
+    * updated_at : timestamp
+}
+
+entity "tasks" {
+  * id : integer
+  * user_id : integer
+  * title : varchar(100)
+  * description : text
+  * priority : varchar(10)
+  * difficulty : varchar(10)
+  * due_date : timestamp
+  * completed : boolean
+  * completed_at : timestamp
+  * points_worth : integer
+  * points_earned : integer
+  * created_at : timestamp
+  * updated_at : timestamp
+}
+
+entity "shop_items"{
+    * id : integer
+    * name : varchar(50)
+    * description : text
+    * item_type : varchar(20)
+    * effect_type : varchar(20)
+    * effect_value : integer
+    * cost_points : integer
+    * rarity : varchar(20)
+    * image_url : varchar(255)
+    * updated_at : timestamp
+}
+
+entity "user_inventory" {
+  * id : integer
+  * user_id : integer
+  * item_id : integer
+  * quantity : integer
+  * purchased_at : timestamp
+  * updated_at : timestamp
+}
+
+entity "achievements" {
+  * id : integer
+  * name : varchar(100)
+  * description : text
+  * criteria_type : varchar(50)
+  * criteria_value : integer
+  * reward_points : integer
+  * updated_at : timestamp
+  * badge_image_url : varchar(255)
+}
+
+entity "user_achievements" {
+  * id : integer
+  * user_id : integer
+  * achievement_id : integer
+  * earned_at : timestamp
+  * updated_at : timestamp
+}
+
+users ||--||pets : has
+users ||--o{tasks : has
+users ||--o{shop_items : can purchase
+users ||--o{user_inventory : owns
+shop_items ||--o{user_inventory : is purchased in
+achievements ||--|| user_achievements : is earned by
+users ||--o{user_achievements : earns
+
+@enduml
