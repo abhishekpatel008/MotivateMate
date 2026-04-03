@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-const dataUrl = process.env.DB_DIALECT;
+const dataUrl = process.env.DATABASE_URL;
 // Create Sequelize instance (this connects to PostgreSQL)
 let sequelize;
 
