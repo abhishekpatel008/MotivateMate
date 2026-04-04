@@ -1,4 +1,4 @@
--- 1. CLEANUP (Optional: Remove if you don't want to wipe existing data)
+-- 1. CLEANUP (Deploying and Re-deploying prevents duplication)
 DROP TABLE IF EXISTS public.user_inventory CASCADE;
 DROP TABLE IF EXISTS public.user_achievements CASCADE;
 DROP TABLE IF EXISTS public.tasks CASCADE;

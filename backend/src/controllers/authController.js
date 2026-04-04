@@ -95,6 +95,15 @@ const registerUser = async (req, res) => {
         console.error('Error registering user:', error);
         res.status(500).json({ message: 'Server error' });
     }
+
+    if (error.name === 'SequelizeUniqueConstraintError'){
+
+    return res.status(400).json({ 
+                message: 'Username or email already exists' 
+            });
+        }
+        
+        res.status(500).json({ message: 'Server error' });
 };
 
 // @desc Login user
