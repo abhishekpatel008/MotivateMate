@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const { User } = require('../models');
+const { User, sequelize } = require('../models');
 const { generateToken } = require('../middleware/auth');
 const { Op } = require('sequelize');
 const { Pet } = require('../models');
@@ -18,6 +18,7 @@ const PET_NAMES = [
 const PET_TYPES = ['cat', 'dog', 'owl'];
 
 const registerUser = async (req, res) => {
+    const transaction = await sequelize.transaction();
     try {
         const { username, email, password } = req.body;
 
@@ -63,6 +64,8 @@ const registerUser = async (req, res) => {
             energy: 50,
             last_interaction: new Date()
         });
+
+        await transaction.commit();
 
         // Generate token
         const token = generateToken(createdUser);
