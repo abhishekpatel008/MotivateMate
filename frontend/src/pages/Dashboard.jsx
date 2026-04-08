@@ -29,6 +29,7 @@ function Dashboard({ user, setUser }) {
     const [isShopOpen, setIsShopOpen] = useState(false);
     const [loading, setLoading] = useState(true);
     const [pointAnimation, setPointAnimation] = useState(null);
+    const [activeAnimation, setActiveAnimation] = useState('');
     const [showAddTask, setShowAddTask] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
     const [isAchievementsOpen, setIsAchievementsOpen] = useState(false);
@@ -41,6 +42,11 @@ function Dashboard({ user, setUser }) {
         difficulty: 'medium',
         due_date: '',
     });
+
+    const triggerAnimation = (animationClass) => {
+        setActiveAnimation(animationClass);
+        setTimeout(() => setActiveAnimation(''), 1000);
+    };
 
     const loadDashboard = useCallback(async () => {
         try {
@@ -97,6 +103,7 @@ function Dashboard({ user, setUser }) {
             const res = await completeTask(id);
             if (res.success) {
                 setPointAnimation(res.points_worth);
+                triggerAnimation('pet-happy');
                 setTimeout(() => setPointAnimation(null), 2000);
                 loadDashboard();
             }
@@ -144,6 +151,7 @@ function Dashboard({ user, setUser }) {
     const handleUseItem = async (invId) => {
         try {
             await applyItemToPet(invId);
+            triggerAnimation('pet-eat');
             loadDashboard();
         } catch (err) {
             alert(err.message);
@@ -194,7 +202,11 @@ function Dashboard({ user, setUser }) {
 
                     {/* Right Column: Pet Display */}
                     <div>
-                        <PetDisplay pet={pet} pointAnimation={pointAnimation} />
+                        <PetDisplay 
+                        pet={pet} 
+                        pointAnimation={pointAnimation}
+                        activeAnimation={activeAnimation}
+                        />
                     </div>
                 </div>
 

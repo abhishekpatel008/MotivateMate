@@ -51,9 +51,9 @@ const registerUser = async (req, res) => {
 
         const randomPetName = PET_NAMES[Math.floor(Math.random() * PET_NAMES.length)];
         const randomPetType = PET_TYPES[Math.floor(Math.random() * PET_TYPES.length)];
-        
 
-        const pet = await Pet.create ({
+
+        const pet = await Pet.create({
             user_id: createdUser.id,
             name: randomPetName,
             type: randomPetType,
@@ -96,17 +96,16 @@ const registerUser = async (req, res) => {
         });
     } catch (error) {
         console.error('Error registering user:', error);
+        if (error.name === 'SequelizeUniqueConstraintError') {
+
+            return res.status(400).json({
+                message: 'Username or email already exists'
+            });
+        }
         res.status(500).json({ message: 'Server error' });
     }
 
-    if (error.name === 'SequelizeUniqueConstraintError'){
-
-    return res.status(400).json({ 
-                message: 'Username or email already exists' 
-            });
-        }
-        
-        res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Server error' });
 };
 
 // @desc Login user
@@ -172,11 +171,11 @@ const updateUser = async (req, res) => {
     try {
         const { username, email } = req.body;
         const user = await User.findByPk(req.user.id);
-        
+
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        
+
         // Check if username is taken (if changing)
         if (username && username !== user.username) {
             const existingUser = await User.findOne({ where: { username } });
@@ -184,7 +183,7 @@ const updateUser = async (req, res) => {
                 return res.status(400).json({ message: 'Username already taken' });
             }
         }
-        
+
         // Check if email is taken (if changing)
         if (email && email !== user.email) {
             const existingUser = await User.findOne({ where: { email } });
@@ -192,12 +191,12 @@ const updateUser = async (req, res) => {
                 return res.status(400).json({ message: 'Email already in use' });
             }
         }
-        
+
         await user.update({
             username: username || user.username,
             email: email || user.email
         });
-        
+
         res.json({
             message: 'Profile updated successfully',
             user: {

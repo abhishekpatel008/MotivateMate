@@ -33,14 +33,6 @@ const EditTaskModal = ({ isOpen, onClose, task, onSave }) => {
 
     if (!isOpen) return null;
 
-    const calculatePoints = () => {
-        const priorityPoints = { low: 10, medium: 25, high: 50, urgent: 75 };
-        const difficultyMultiplier = { easy: 1, medium: 1.5, hard: 2 };
-        const basePoints = priorityPoints[formData.priority] || 10;
-        const multiplier = difficultyMultiplier[formData.difficulty] || 1;
-        return Math.round(basePoints * multiplier);
-    };
-
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white rounded-xl p-6 w-[500px] max-w-[90%]">
@@ -97,15 +89,6 @@ const EditTaskModal = ({ isOpen, onClose, task, onSave }) => {
                                 onChange={(e) => handleChange('due_date', e.target.value)}
                                 className="w-full border border-gray-300 rounded-lg p-2"
                             />
-                        </div>
-
-                        <div className="mb-4 p-3 bg-purple-50 rounded-lg">
-                            <div className="flex justify-between items-center">
-                                <span className="text-sm text-gray-600">Points reward:</span>
-                                <span className="text-xl font-bold text-purple-600">
-                                    ⭐ {calculatePoints()} pts
-                                </span>
-                            </div>
                         </div>
 
                         <div className="flex justify-end gap-3 mt-4 pt-2">
