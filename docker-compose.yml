@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # 1. The PostgreSQL Database Service
+  postgres-db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d task_planner_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  #Backend service
+  backend:
+    build: ./backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgresql://postgres:${DB_PASSWORD}@db.crjgqosqtmcdmsfjkuhs.supabase.co:5432/postgres
+    depends_on:
+      postgres-db:
+        condition: service_healthy # Wait until Postgres is fully ready to accept queries
+
+volumes:
+  pgdata:
