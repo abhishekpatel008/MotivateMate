@@ -53,6 +53,7 @@ exports.checkAndAwardAchievements = async (userId) => {
             pet_level: await getPetLevel(userId)
         };
         
+        
         const newlyEarned = [];
         
         // Check each achievement
