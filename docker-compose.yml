@@ -21,7 +21,9 @@ services:
 
   #Backend service
   backend:
-    build: ./backend
+    build: ./legacy-backend
+    env_file:
+      - ./MotivateMate/.env
     restart: always
     ports:
       - "5000:5000"
