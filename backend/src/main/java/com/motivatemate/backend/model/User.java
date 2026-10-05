@@ -5,7 +5,20 @@ import lombok.Setter;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-//import java.util.List;
+import java.util.List;
+
+/**
+ * User: Represents the user of the MotivateMate application
+ * 
+ * <p>
+ * Maps to the {@code users} table in PostgreSQL. Each user has a unique
+ * username and email, accumulates points by completing tasks and owns exactly
+ * one {@link Pet} and zero or more {@link Task}s.
+ * </p>
+ * 
+ * @see Pet
+ * @see Task
+ */
 
 @Entity
 @Table(name = "users")
@@ -46,13 +59,8 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Pet pet;
 
-    /**
-     * TODO:
-     * Complete the task entity and remove comments from this block
-     */
-    // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval =
-    // true)
-    // private List<Task> tasks;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks;
 
     @PrePersist
     protected void onCreate() {

@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.motivatemate.backend.dto.UserResponse;
 import com.motivatemate.backend.service.UserService;
-import com.motivatemate.backend.model.User;
+// import com.motivatemate.backend.model.User;
 import org.springframework.http.ResponseEntity;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api/users")
