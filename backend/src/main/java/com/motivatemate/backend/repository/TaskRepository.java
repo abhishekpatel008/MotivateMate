@@ -21,7 +21,7 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
      * @param userId the user id to search the task for
      * @return list of task for that specific user
      */
-    List<Task> findTasksByUserId(Integer userId);
+    List<Task> findByUserId(Integer userId);
 
     /**
      * Finds a specific task with ID for user
@@ -30,5 +30,5 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
      * @param userId ID of the user
      * @return Task assigned to that specific user ID
      */
-    Optional<Task> findByIdAndUserId(Integer Id, Integer userId);
+    Optional<Task> findByIdAndUserId(Integer id, Integer userId);
 }
