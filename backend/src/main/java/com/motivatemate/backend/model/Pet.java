@@ -6,6 +6,18 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a virtual pet owned by a {@link User}.
+ *
+ * <p>
+ * Maps to the {@code pets} table in PostgreSQL. Each user has at most
+ * one pet (enforced by a unique constraint on {@code user_id}). Pet stats
+ * ({@code hunger}, {@code happiness}, {@code energy}) range from 0 to 100
+ * and are constrained at the database level.
+ * </p>
+ *
+ * @see User
+ */
 @Entity
 @Table(name = "pets")
 @Getter

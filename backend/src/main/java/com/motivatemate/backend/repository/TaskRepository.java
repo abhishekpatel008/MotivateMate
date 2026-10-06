@@ -18,17 +18,22 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
     /**
      * Finds the tasks for the user by their unique user id.
      * 
-     * @param userId the user id to search the task for
-     * @return list of task for that specific user
+     * @param userId the ID of the user whose tasks to retrieve
+     * @return a list of tasks for that user, or an empty list if none exist
      */
     List<Task> findByUserId(Integer userId);
 
     /**
      * Finds a specific task with ID for user
      * 
-     * @param Id     ID of the task
-     * @param userId ID of the user
-     * @return Task assigned to that specific user ID
+     * <p>
+     * This prevents a user from accessing another user's task by guessing
+     * the task ID. The {@code user_id} check is part of the query.
+     * </p>
+     * 
+     * @param Id     the task's primary key
+     * @param userId the ID of the user who owns the task
+     * @return the task if found and owned by the user, or empty otherwise
      */
     Optional<Task> findByIdAndUserId(Integer id, Integer userId);
 }

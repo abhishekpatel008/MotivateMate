@@ -6,6 +6,17 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a task created by a {@link User}.
+ *
+ * <p>
+ * Maps to the {@code tasks} table in PostgreSQL. A user can have many
+ * tasks (one-to-many relationship). Tasks have a priority and difficulty
+ * that determine the points earned when completed.
+ * </p>
+ *
+ * @see User
+ */
 @Entity
 @Table(name = "tasks")
 @Getter
@@ -17,10 +28,7 @@ public class Task {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "user_id")
-    private Integer userId;
-
-    @Column(name = "title", nullable =  false, length = 200)
+    @Column(name = "title", nullable = false, length = 200)
     private String title;
 
     @Column(name = "description")
