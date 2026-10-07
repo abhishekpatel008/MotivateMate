@@ -1,0 +1,2 @@
+# Force Linguist to detect and count Java files
+*.java linguist-detectable=true
