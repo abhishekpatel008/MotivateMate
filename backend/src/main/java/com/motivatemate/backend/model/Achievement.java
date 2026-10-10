@@ -6,6 +6,20 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents an achievement that a {@link User} can earn.
+ *
+ * <p>
+ * Maps to the {@code achievements} table in PostgreSQL. Achievements
+ * are defined once and awarded to users when they meet a specific criterion
+ * (for example, completing 10 tasks). The {@code criteriaType} field
+ * determines which user stat is checked, and {@code criteriaValue} is the
+ * threshold that must be reached.
+ * </p>
+ *
+ * @see UserAchievement
+ */
+
 @Entity
 @Table(name = "achievements")
 @Getter
