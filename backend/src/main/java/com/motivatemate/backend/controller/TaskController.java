@@ -3,12 +3,17 @@ package com.motivatemate.backend.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.motivatemate.backend.dto.CreateTaskRequest;
 import com.motivatemate.backend.dto.TaskResponse;
 import com.motivatemate.backend.service.TaskService;
+import com.motivatemate.backend.model.Task;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * REST endpoints for task operations.
@@ -46,4 +51,10 @@ public class TaskController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @PostMapping("/user/{userId}")
+    public ResponseEntity<TaskResponse> createTask(@PathVariable Integer userId,
+            @RequestBody CreateTaskRequest request) {
+        Task created = taskService.createTask(userId, request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new TaskResponse(created));
+    }
 }

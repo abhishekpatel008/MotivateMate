@@ -1,7 +1,10 @@
 package com.motivatemate.backend.service;
 
 import com.motivatemate.backend.model.UserAchievement;
+//import com.motivatemate.backend.repository.TaskRepository;
 import com.motivatemate.backend.repository.UserAchievementRepository;
+//import com.motivatemate.backend.repository.UserRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +20,7 @@ import java.util.List;
  */
 @Service
 public class UserAchievementService {
+
     private final UserAchievementRepository userAchievementRepository;
 
     public UserAchievementService(UserAchievementRepository userAchievementRepository) {
@@ -32,4 +36,5 @@ public class UserAchievementService {
     public List<UserAchievement> getAchievementsForUser(Integer userId) {
         return userAchievementRepository.findByUserId(userId);
     }
+
 }

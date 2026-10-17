@@ -21,7 +21,7 @@ import java.util.List;
  * </p>
  */
 @RestController
-@RequestMapping("/api/shop/")
+@RequestMapping("/api/shop//items")
 public class ShopItemController {
 
     private final ShopItemService shopItemService;
@@ -39,7 +39,7 @@ public class ShopItemController {
      *
      * @return HTTP 200 with a JSON array of shop items (possibly empty)
      */
-    @GetMapping("/items")
+    @GetMapping
     public ResponseEntity<List<ShopItemResponse>> getAllShopItems() {
         List<ShopItemResponse> items = shopItemService.getShopItems()
                 .stream()
@@ -58,7 +58,7 @@ public class ShopItemController {
      * @param id the item's ID
      * @return HTTP 200 with the item, or HTTP 404 if no item has that ID
      */
-    @GetMapping("/items/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ShopItemResponse> getShopItemById(@PathVariable Integer id) {
         return shopItemService.getShopItemById(id)
                 .map(ShopItemResponse::new)

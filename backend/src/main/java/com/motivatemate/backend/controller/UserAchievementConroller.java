@@ -4,13 +4,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.motivatemate.backend.dto.UserAchievementResponse;
-import com.motivatemate.backend.model.UserAchievement;
+//import com.motivatemate.backend.model.UserAchievement;
 import com.motivatemate.backend.service.UserAchievementService;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * REST endpoints for user achievement retrieval.
